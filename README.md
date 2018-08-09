@@ -3,31 +3,26 @@
 Pytorch implementation for “Adversarial Learning with Local Coordinate Coding”.
 
 ## Demonstration of Local Coordinate Coding (LCC)
-![ ](./images/local_g.png  "lcc")
+<img src="./images/local_g.png" width="350px" />
 
 ## Architecture of LCCGAN
-![ ](./images/architecture.png  "Architecture")
+<img src="./images/architecture.png" width="450px" />
+
 - AutoEncoder (AE) learns embeddings on the latent manifold.
 - Local Coordinate Coding (LCC) learns local coordinate systems.
 - The LCC sampling method is conducted on the latent manifold.
 
 ## Gometric Views of LCC Sampling
-![ ](./images/lcc_sampling.jpg  "lcc sampling")
+<img src="./images/lcc_sampling.jpg" width="450px" />
+
 - With the help of LCC, we obtain local coordinate systems for sampling on the latent manifold.
 - Using the local coordinate systems, LCC-GANs always sample some meaningful points to generate new images with different attributes.
 
 ## Objective Function
-Given a generator $G_w$ and a discriminator $D_v$ with their parameters $w \in \mathcal W$ and $v \in \mathcal V$, respectively, we minimize the objective function:
-$$
-\mathop {\min}\limits_{\small{w \in \mathcal W}} 
-\mathop {\max}\limits_{\small{v \in \mathcal V}} 
-\mathop \mathbb E \limits_{\bf x \sim \widehat{\mathcal D}_{real}} \big[ \phi (D_v(\bf x)) \big]
-\small{+} \mathop{\mathbb E} \limits_{\bf h \sim \mathcal H} \big[ \phi \big( \widetilde{D}_v\left(G_w\left({\bold \gamma}(\bf h) \right) \right) \big) \big],
-$$
-where $\phi(\cdot)$ is a monotone function and $\mathcal H$ is the latent distribution.
+<img src="./images/objective.png" width="300px" />
 
 ## Training Algorithm
-![ ](./images/algorithm.png  "lcc sampling")
+<img src="./images/algorithm.png" width="300px" />
 
 ## Dependencies
 python 2.7
