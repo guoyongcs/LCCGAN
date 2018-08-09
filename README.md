@@ -4,13 +4,13 @@ Pytorch implementation for â€œAdversarial Learning with Local Coordinate Codingâ
 
 ## Demonstration of Local Coordinate Coding (LCC)
 <div align=center>
-<img src="./images/local_g.png" width="350px" />
+<img src="./images/local_g.png" width="600px" />
 </div>
 
 
 ## Architecture of LCCGAN
 <div align=center>
-<img src="./images/architecture.png" width="450px" />
+<img src="./images/architecture.png" width="800px" />
 </div>
 
 - AutoEncoder (AE) learns embeddings on the latent manifold.
@@ -19,7 +19,7 @@ Pytorch implementation for â€œAdversarial Learning with Local Coordinate Codingâ
 
 ## Gometric Views of LCC Sampling
 <div align=center>
-<img src="./images/lcc_sampling.jpg" width="450px" />
+<img src="./images/lcc_sampling.jpg" width="600px" />
 </div>
 
 - With the help of LCC, we obtain local coordinate systems for sampling on the latent manifold.
@@ -27,12 +27,12 @@ Pytorch implementation for â€œAdversarial Learning with Local Coordinate Codingâ
 
 ## Objective Function
 <div align=center>
-<img src="./images/objective.png" width="300px" />
+<img src="./images/objective.png" width="500px" />
 </div>
 
 ## Training Algorithm
 <div align=center>
-<img src="./images/algorithm.png" width="300px" />
+<img src="./images/algorithm.png" width="500px" />
 </div>
 
 ## Dependencies
