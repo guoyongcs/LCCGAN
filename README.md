@@ -5,12 +5,13 @@ Pytorch implementation for â€œAdversarial Learning with Local Coordinate Codingâ
 <!-- 
 ## Demonstration of Local Coordinate Coding (LCC)
 <img src="./images/local_g.png" width="600px" />
+-->
 
 ## Architecture of LCCGAN
 <div align=center>
 <img src="./images/architecture.png" width="800px" />
 </div>
--->
+
 
 - AutoEncoder (AE) learns embeddings on the latent manifold.
 - Local Coordinate Coding (LCC) learns local coordinate systems.
