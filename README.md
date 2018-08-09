@@ -26,14 +26,10 @@ Pytorch implementation for â€œAdversarial Learning with Local Coordinate Codingâ
 - Using the local coordinate systems, LCC-GANs always sample some meaningful points to generate new images with different attributes.
 
 ## Objective Function
-<div align=center>
 <img src="./images/objective.png" width="500px" />
-</div>
 
 ## Training Algorithm
-<div align=center>
 <img src="./images/algorithm.png" width="500px" />
-</div>
 
 ## Dependencies
 python 2.7
