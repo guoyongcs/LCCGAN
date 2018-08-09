@@ -3,10 +3,7 @@
 Pytorch implementation for “Adversarial Learning with Local Coordinate Coding”.
 
 ## Demonstration of Local Coordinate Coding (LCC)
-<div align=center>
 <img src="./images/local_g.png" width="600px" />
-</div>
-
 
 ## Architecture of LCCGAN
 <div align=center>
