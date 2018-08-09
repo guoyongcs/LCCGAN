@@ -25,8 +25,8 @@ Pytorch implementation for â€œAdversarial Learning with Local Coordinate Codingâ
 - With the help of LCC, we obtain local coordinate systems for sampling on the latent manifold.
 - Using the local coordinate systems, LCC-GANs always sample some meaningful points to generate new images with different attributes.
 
-## Objective Function
-<img src="./images/objective.png" width="500px" />
+<!-- ## Objective Function
+<img src="./images/objective.png" width="500px" /> -->
 
 ## Training Algorithm
 <img src="./images/algorithm.png" width="500px" />
