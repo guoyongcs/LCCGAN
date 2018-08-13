@@ -48,7 +48,7 @@ In our paper, to sample different images, we train our model on four datasets, r
 ## Training
 - Train AEGAN on Oxford-102 Flowers dataset.
 ```
-python train.py --dataset flowers --dataroot your_images_folder --batchSize 16 --imageSize 512 --niter_stage1 100 --niter_stage2 1000 --cuda --outf your_images_output_folder --gpu 3
+python train.py --dataset flowers --dataroot your_images_folder --batchSize 64 --imageSize 64 --cuda
 ```
 - If you want to train the model on Large-scale CelebFaces Attributes (CelebA), Large-scale Scene Understanding (LSUN) or your own dataset. Just replace the hyperparameter like these:
 ```
