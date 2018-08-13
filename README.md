@@ -57,3 +57,19 @@ python train.py --dataset flowers --dataroot your_images_folder --batchSize 64 -
 python train.py --dataset name_o_dataset --dataroot path_of_dataset
 ```
 
+## Citation
+```
+@InProceedings{pmlr-v80-cao18a,
+  title = 	 {Adversarial Learning with Local Coordinate Coding},
+  author = 	 {Cao, Jiezhang and Guo, Yong and Wu, Qingyao and Shen, Chunhua and Huang, Junzhou and Tan, Mingkui},
+  booktitle = 	 {Proceedings of the 35th International Conference on Machine Learning},
+  pages = 	 {707--715},
+  year = 	 {2018},
+  editor = 	 {Dy, Jennifer and Krause, Andreas},
+  volume = 	 {80},
+  series = 	 {Proceedings of Machine Learning Research},
+  address = 	 {Stockholmsmässan, Stockholm Sweden},
+  month = 	 {10--15 Jul},
+  publisher = 	 {PMLR}
+}
+```
