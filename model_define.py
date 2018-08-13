@@ -3,27 +3,13 @@ import torch.nn as nn
 from linearcoding import LinearCoding
 from torch.autograd import Variable
 
-class pixelwise_norm_layer(nn.Module):
-    def __init__(self):
-        super(pixelwise_norm_layer, self).__init__()
-        self.eps = 1e-8
-
-    def forward(self, x):
-        return x / (torch.mean(x**2, dim=1, keepdim=True) + self.eps) ** 0.5
-
-class Flatten(nn.Module):
-    def __init__(self):
-        super(Flatten, self).__init__()
-
-    def forward(self, x):
-        return x.view(x.size(0), -1)
 
 class linear_coding(nn.Module):
-    def __init__(self, anchor_num, latent_dim):
+    def __init__(self, basis_num, embedding_dim):
         super(linear_coding, self).__init__()
-        self.anchor_num = anchor_num
-        self.latent_dim = latent_dim
-        self.register_buffer('basis', torch.zeros(self.anchor_num, self.latent_dim))
+        self.basis_num = basis_num
+        self.embedding_dim = embedding_dim
+        self.register_buffer('basis', torch.zeros(self.basis_num, self.embedding_dim))
 
     def reset_basis(self, basis):
         if torch.is_tensor(basis):
@@ -34,18 +20,18 @@ class linear_coding(nn.Module):
     def forward(self, x):
         batch_size = x.size(0)
         sparsity = x.size(1)
-        assert sparsity <= self.anchor_num
-        out = Variable(torch.zeros(batch_size, self.anchor_num))
+        assert sparsity <= self.basis_num
+        out = Variable(torch.zeros(batch_size, self.basis_num))
         if self.training:
-            index = torch.LongTensor(batch_size).random_(self.anchor_num)
+            index = torch.LongTensor(batch_size).random_(self.basis_num)
         else:
             index = torch.LongTensor(batch_size).zero_()
         if x.is_cuda:
             index = index.cuda()
         basis_select = self.basis[index]
-        basis_expand = self.basis.view(1, self.anchor_num, self.latent_dim).expand(batch_size, self.anchor_num, self.latent_dim)
-        select_expand = basis_select.view(batch_size, 1, self.latent_dim).expand(batch_size, self.anchor_num, self.latent_dim)
-        distance = torch.norm(basis_expand-select_expand, 2, 2) # batch_size x anchor_num
+        basis_expand = self.basis.view(1, self.basis_num, self.embedding_dim).expand(batch_size, self.basis_num, self.embedding_dim)
+        select_expand = basis_select.view(batch_size, 1, self.embedding_dim).expand(batch_size, self.basis_num, self.embedding_dim)
+        distance = torch.norm(basis_expand-select_expand, 2, 2) # batch_size x basis_num
         _, indices = torch.sort(distance)
         indices = Variable(indices[:, 0:sparsity]) # batch_size x sparsity
         if x.is_cuda:
@@ -57,18 +43,18 @@ class linear_coding(nn.Module):
 
 
 class _netG(nn.Module):
-    def __init__(self, anchor_num, latent_dim, nz, ngf, nc):
+    def __init__(self, basis_num, embedding_dim, nz, ngf, nc):
         super(_netG, self).__init__()
-        self.anchor_num = anchor_num
-        self.latent_dim = latent_dim
+        self.basis_num = basis_num
+        self.embedding_dim = embedding_dim
         self.nz = nz
         self.ngf = ngf
         self.nc = nc
-        self.lcc = linear_coding(self.anchor_num, self.latent_dim)
+        self.lcc = linear_coding(self.basis_num, self.embedding_dim)
         # DCGAN
         self.main = nn.Sequential(
             # input is Z, going into a convolution
-            nn.ConvTranspose2d(self.latent_dim, self.ngf * 8, 4, 1, 0, bias=False),
+            nn.ConvTranspose2d(self.embedding_dim, self.ngf * 8, 4, 1, 0, bias=False),
             nn.BatchNorm2d(self.ngf * 8),
             nn.ReLU(True),
             # state size. (ngf*8) x 4 x 4
@@ -131,14 +117,14 @@ class _netD(nn.Module):
 
 
 class _decoder(nn.Module):
-    def __init__(self, nc, ngf, latent_dim):
+    def __init__(self, nc, ngf, embedding_dim):
         super(_decoder, self).__init__()
         self.nc = nc
         self.ngf = ngf
-        self.latent_dim = latent_dim
+        self.embedding_dim = embedding_dim
         self.main = nn.Sequential(
             # input is Z, going into a convolution
-            nn.ConvTranspose2d(self.latent_dim, self.ngf * 8, 4, 1, 0, bias=False),
+            nn.ConvTranspose2d(self.embedding_dim, self.ngf * 8, 4, 1, 0, bias=False),
             nn.BatchNorm2d(self.ngf * 8),
             nn.ReLU(True),
             # state size. (ngf * 8) x 4 x 4
@@ -165,11 +151,11 @@ class _decoder(nn.Module):
 
 
 class _encoder(nn.Module):
-    def __init__(self, nc, ndf, latent_dim):
+    def __init__(self, nc, ndf, embedding_dim):
         super(_encoder, self).__init__()
         self.nc = nc
         self.ndf = ndf
-        self.latent_dim = latent_dim
+        self.embedding_dim = embedding_dim
         self.main = nn.Sequential(
             # input is (nc) x 64 x 64
             nn.Conv2d(self.nc, self.ndf * 2, 4, 2, 1, bias=False),
@@ -187,11 +173,11 @@ class _encoder(nn.Module):
             nn.BatchNorm2d(ndf * 8),
             nn.LeakyReLU(0.2, inplace=True),
             # state size. (ndf * 8) x 4 x 4
-            nn.Conv2d(self.ndf * 8, self.latent_dim, 4, 1, 0, bias=False),
-            # state size. (latent_dim) x 1 x 1
+            nn.Conv2d(self.ndf * 8, self.embedding_dim, 4, 1, 0, bias=False),
+            # state size. (embedding_dim) x 1 x 1
         )
 
     def forward(self, input):
         output = self.main(input)
-        # output = output.view(-1, self.latent_dim)
+        # output = output.view(-1, self.embedding_dim)
         return output
