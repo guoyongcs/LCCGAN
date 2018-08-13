@@ -39,6 +39,8 @@ Pytorch
 ## Dataset
 In our paper, to sample different images, we train our model on four datasets, respectively.
 
+- Download [MNIST](https://pytorch.org/docs/stable/torchvision/datasets.html#mnist)  dataset.
+
 - Download [Oxford-102 Flowers](http://www.robots.ox.ac.uk/~vgg/data/flowers/102/)  dataset.
 
 - Download [Large-scale CelebFaces Attributes (CelebA)](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html)  dataset.
