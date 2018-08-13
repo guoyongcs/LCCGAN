@@ -1,4 +1,4 @@
-## LCCGAN
+# LCCGAN
 
 Pytorch implementation for “Adversarial Learning with Local Coordinate Coding”.
 
@@ -29,7 +29,7 @@ Pytorch implementation for “Adversarial Learning with Local Coordinate Coding�
 <img src="./images/objective.png" width="500px" /> -->
 
 ## Training Algorithm
-<img src="./images/algorithm.png" width="500px" />
+<img src="./images/algorithm.png" width="450px" />
 
 ## Dependencies
 python 2.7
