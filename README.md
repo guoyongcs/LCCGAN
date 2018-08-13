@@ -48,7 +48,7 @@ In our paper, to sample different images, we train our model on four datasets, r
 - Download [ Large-scale Scene Understanding (LSUN) ](http://lsun.cs.princeton.edu/2016/)  dataset.
 
 ## Training
-- Train AEGAN on Oxford-102 Flowers dataset.
+- Train LCCGAN on Oxford-102 Flowers dataset.
 ```
 python train.py --dataset flowers --dataroot your_images_folder --batchSize 64 --imageSize 64 --cuda
 ```
