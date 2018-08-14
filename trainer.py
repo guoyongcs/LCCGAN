@@ -235,6 +235,9 @@ class Trainer(object):
                     break
                 self.real_img.data.resize_(real_cpu.size()).copy_(real_cpu)
                 self.label.data.resize_(batch_size).fill_(1)
+                ############################
+                # (1) Update D network
+                ###########################
                 self.netD.zero_grad()
                 # train with real
                 output = self.netD(self.real_img)
