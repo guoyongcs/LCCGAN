@@ -95,15 +95,15 @@ class _netD(nn.Module):
             nn.LeakyReLU(0.2, inplace=True),
             # state size. (ndf*2) x 32 x 32
             nn.Conv2d(self.ndf * 2, self.ndf * 4, 4, 2, 1, bias=False),
-            nn.BatchNorm2d(ndf * 4),
+            nn.BatchNorm2d(self.ndf * 4),
             nn.LeakyReLU(0.2, inplace=True),
             # state size. (ndf*4) x 16 x 16
             nn.Conv2d(self.ndf * 4, self.ndf * 8, 4, 2, 1, bias=False),
-            nn.BatchNorm2d(ndf * 8),
+            nn.BatchNorm2d(self.ndf * 8),
             nn.LeakyReLU(0.2, inplace=True),
             # state size. (ndf*8) x 8 x 8
             nn.Conv2d(self.ndf * 8, self.ndf * 8, 4, 2, 1, bias=False),
-            nn.BatchNorm2d(ndf * 8),
+            nn.BatchNorm2d(self.ndf * 8),
             nn.LeakyReLU(0.2, inplace=True),
             # state size. (ndf*8) x 4 x 4
             nn.Conv2d(self.ndf * 8, 1, 4, 1, 0, bias=False),
@@ -161,15 +161,15 @@ class _encoder(nn.Module):
             nn.LeakyReLU(0.2, inplace=True),
             # state size. (ndf * 2) x 32 x 32
             nn.Conv2d(self.ndf * 2, self.ndf * 4, 4, 2, 1, bias=False),
-            nn.BatchNorm2d(ndf * 4),
+            nn.BatchNorm2d(self.ndf * 4),
             nn.LeakyReLU(0.2, inplace=True),
             # state size. (ndf * 4) x 16 x 16
             nn.Conv2d(self.ndf * 4, self.ndf * 8, 4, 2, 1, bias=False),
-            nn.BatchNorm2d(ndf * 8),
+            nn.BatchNorm2d(self.ndf * 8),
             nn.LeakyReLU(0.2, inplace=True),
             # state size. (ndf * 4) x 8 x 8
             nn.Conv2d(self.ndf * 8, self.ndf * 8, 4, 2, 1, bias=False),
-            nn.BatchNorm2d(ndf * 8),
+            nn.BatchNorm2d(self.ndf * 8),
             nn.LeakyReLU(0.2, inplace=True),
             # state size. (ndf * 8) x 4 x 4
             nn.Conv2d(self.ndf * 8, self.embedding_dim, 4, 1, 0, bias=False),
