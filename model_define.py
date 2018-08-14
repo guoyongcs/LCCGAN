@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-from linearcoding import LinearCoding
 from torch.autograd import Variable
 
 
