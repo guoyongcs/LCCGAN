@@ -3,9 +3,9 @@ import torch.nn as nn
 from torch.autograd import Variable
 
 
-class linear_coding(nn.Module):
+class lcc_sampling(nn.Module):
     def __init__(self, basis_num, embedding_dim):
-        super(linear_coding, self).__init__()
+        super(lcc_sampling, self).__init__()
         self.basis_num = basis_num
         self.embedding_dim = embedding_dim
         self.register_buffer('basis', torch.zeros(self.basis_num, self.embedding_dim))
@@ -49,7 +49,7 @@ class _netG(nn.Module):
         self.nz = nz
         self.ngf = ngf
         self.nc = nc
-        self.lcc = linear_coding(self.basis_num, self.embedding_dim)
+        self.lcc = lcc_sampling(self.basis_num, self.embedding_dim)
         # DCGAN
         self.main = nn.Sequential(
             # input is Z, going into a convolution
