@@ -136,7 +136,7 @@ class Trainer(object):
         lcc_coding_expand = lcc_coding.abs().sqrt()
         lcc_coding_expand = lcc_coding_expand.view(batch_size, basis_num, 1).expand(batch_size, basis_num, embedding_dim)
         l2 = self.criterion_l2(lcc_coding_expand*(latent_expand-basis_expand), torch.zeros_like(basis_expand).cuda())
-        loss = 0.5 * l1 + self.opt.MU * l2 + self.opt.LCCLAMBDA * l3
+        loss = 0.5 * l1 + self.opt.LG * l2 + self.opt.LCCLAMBDA * l3
         return loss
 
 

@@ -21,6 +21,7 @@ parser.add_argument('--s3_lr', type=float, default=0.0002, help='0.01 for lcc | 
 parser.add_argument('--beta1', type=float, default=0.5, help='beta1 for adam')
 parser.add_argument('--beta2', type=float, default=0.999, help='beta2 for adam')
 parser.add_argument('--criticIters', type=int, default=1, help='for WGAN and WGAN-GP, number of critic iters per gen iter')
+parser.add_argument('--LG', type=float, default=2, help='LG in Eqn. (2)')
 parser.add_argument('--LCCLAMBDA', type=float, default=0.2, help='LCC hyperparameter')
 parser.add_argument('--niter1', type=int, default=100, help='number of iterations in stage 1')
 parser.add_argument('--niter2', type=int, default=3, help='number of iterations in stage 2')
