@@ -127,6 +127,7 @@ class Trainer(object):
         assert(batch_size == lcc_coding.size(0))
         assert(embedding_dim == basis.size(1))
         assert(basis_num == lcc_coding.size(1))
+        lcc_coding = lcc_coding / torch.sum(lcc_coding, dim=1, keepdim=True)        
         # compute loss-1 and loss-3 
         l1 = self.criterion_l2(recoverd, latent)
         l3 = self.criterion_l2(basis, torch.zeros_like(basis).cuda())
